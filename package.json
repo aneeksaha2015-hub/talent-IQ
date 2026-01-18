@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/aneeksaha2015-hub/talent-IQ/issues"
   },
-  "homepage": "https://github.com/aneeksaha2015-hub/talent-IQ#readme"
+  "homepage": "https://github.com/aneeksaha2015-hub/talent-IQ#readme",
+  "dependencies": {
+    "mongoose": "^9.1.4"
+  }
 }
