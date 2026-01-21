@@ -5,6 +5,7 @@ import {serve} from "inngest/express";
 import { ENV } from "./lib/env.js";
 import { connectDB } from "./lib/db.js";
 import { inngest } from "./lib/inngest.js";
+import { functions } from "./lib/inngest.js";
 
 const app = express();
 
@@ -22,7 +23,7 @@ app.get("/books", (req, res) => {
   res.status(200).json({ msg: "this is the books endpoint" });
 });
 
-if (ENV.NODE_ENV == "production") {
+if (ENV.NODE_ENV == "production") {  
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
   app.get("/{*any}", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
