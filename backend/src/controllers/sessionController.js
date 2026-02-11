@@ -91,7 +91,13 @@ export async function joinSession(req,res) {
         const clerkId = req.user.clerkId;
 
         if(!session) return res.status(404).json({ message: "Session not found" });
-        if(session.participant) return res.status(404).json({message:"Session is full!"});
+        if(session.status !=="active"){
+            return res.status(400).json({message: "Cannot join a completed session"})
+        }
+        if(session.host.toString() === userId.toString()){
+            return res.status(400).json({ message:"Host cannot join their own session as participant"});
+        }
+        if(session.participant) return res.status(409).json({message:"Session is full!"});
         session.participant = userId;
         await session.save();
 
